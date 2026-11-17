@@ -1,0 +1,2 @@
+# OnCalendar=Mon *-*-* 09:10:00 Asia/Seoul, AccuracySec=1s
+# Persistent는 쓰지 않는다 (놓친 주문을 엉뚱한 시각에 보충 실행하지 않기 위해)

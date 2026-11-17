@@ -1,0 +1,10 @@
+-- 테이블
+-- runs(run_id, job, started_at, status: ok/skipped/failed/locked, skip_reason) — ExecCondition의 건너뜀도 기록
+-- targets(as_of, execution_date, ticker, target_weight, strategy_version)
+-- order_plans(UNIQUE run_id·ticker·side, status: planned/blocked/sent/done, gate_result: 점검 사유 목록)
+--   매도 체결 후 매수 재계산은 같은 행의 수량을 갱신 (UNIQUE 유지)
+-- orders(id 내부 PK, plan_id, kind: new/revise/cancel, status: requested/accepted/rejected/unknown,
+--        order_no: 증권사 주문번호(응답 후 채움, NULL 허용), requested_at, responded_at)
+--   요청 전에 status=requested로 먼저 쓰고, 응답이 없으면 unknown → 다음 실행이 체결 조회로 확인
+-- fills(PK order_no·체결순번), snapshots(보유 수량, 주문 가능 금액, 평가금액)
+-- reconciliations(차이 내용, status: open/resolved, resolved_note)

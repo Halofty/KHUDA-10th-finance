@@ -1,0 +1,3 @@
+# Type=oneshot
+# ExecCondition: python -m khuda_quant.market_day rebalance (거래일·order_window·chk_holiday 판단, 건너뜀은 runs에 기록)
+# ExecStart: jobs/rebalance.py --env paper --mode plan, EnvironmentFile=-@PROJECT@/.env

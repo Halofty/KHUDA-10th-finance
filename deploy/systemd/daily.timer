@@ -1,0 +1,2 @@
+# OnCalendar=Mon..Fri *-*-* 15:40:00 Asia/Seoul — 장 마감 뒤 사후 대조·감시·일일 보고
+# 주문을 내지 않으므로 Persistent=true를 써도 된다 (꺼져 있던 동안의 점검을 켜진 뒤 보충)

@@ -1,0 +1,3 @@
+# Type=oneshot
+# ExecCondition: python -m khuda_quant.market_day daily (거래일만 판단, 시간대 제한 없음 → 보충 실행도 그날 안에서 동작)
+# ExecStart: jobs/daily.py --env paper, EnvironmentFile=-@PROJECT@/.env

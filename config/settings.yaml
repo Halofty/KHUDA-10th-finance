@@ -1,0 +1,20 @@
+# 운용 설정 (커밋한다. 비밀값은 .env). 모의/실전 구분은 jobs/rebalance.py --env paper|live 인자로 한다.
+# - capital, max_order_krw, max_daily_orders
+# - order_window: 주문 가능 시간대 (예: 08:30~20:00). 리밸런싱 ExecCondition(market_day)이 이 값을 읽는다
+# - 비용: fee_rate(매수·매도 수수료), sell_tax_rate(매도 세금) — 백테스트와 주문 계획이 같이 쓴다
+#   (별도 cost_model은 두지 않는다. 슬리피지 모델이 필요해지면 분리)
+# - strategy: 리밸런싱이 실행할 확정 전략 (strategy/ 폴더의 파일 이름과 파라미터)
+#     name: momentum                      # → src/khuda_quant/strategy/momentum.py
+#     params: {lookback: 20, top_n: 3}
+#   전략을 바꿀 때는 jobs/backtest.py로 검증한 뒤 이 항목을 고쳐 커밋한다.
+# - execution: 체결 정책 — 전략팀 방향에 따라 수정 (docs/architecture/architecture.md "체결 정책")
+#     order_type: limit                   # limit(지정가) | market(시장가)
+#     limit_price: last_close             # 지정가 기준 (예: 직전 종가, 현재가 ± n호가)
+#     fill_wait_sec: 300                  # 주문 후 체결을 기다리는 시간
+#     on_unfilled: cancel                 # cancel(취소) | reprice(정정 후 재주문) | keep(유지)
+#     max_retries: 2                      # 재주문 최대 횟수
+#     recheck_before_retry: true          # 재주문 전 잔고 재조회 + 사전 점검 재통과
+#   위 값은 모두 예시이며 미확정이다.
+# - notify: 알림 대상 (주소·토큰은 .env)
+#     channel: slack                      # slack | telegram
+#     on: [order, fill, error, mismatch, skip, daily_report]
