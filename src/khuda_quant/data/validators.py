@@ -1,5 +1,5 @@
 # fetcher에서 가져온 시세 (팀양식으로 정리됨) 를 검사 >> 결과가 [] 면 검사 통과
-# 시세 검증 → 문제 목록 반환 (빈 목록이면 통과)    
+# 시세 검증 → 문제 목록 반환 (빈 목록이면 통과)
 # - 중복, 결측, 0 이하 가격, 고가 < 저가, 오래된 데이터
 
 import numpy as np
@@ -26,6 +26,8 @@ def validate_prices(bars, expected_dates=None, start=None, end=None) -> list[str
         problems.append("dates outside requested range")
     if expected_dates is None:
         return problems
+    if len(expected_dates) and actual.max() < expected_dates.max():
+        problems.append("stale data: latest expected session is missing")
     missing = expected_dates.difference(actual)
     extra = actual.difference(expected_dates)
     if len(missing):
@@ -33,3 +35,4 @@ def validate_prices(bars, expected_dates=None, start=None, end=None) -> list[str
     if len(extra):
         problems.append(f"unexpected sessions: {extra.strftime('%Y-%m-%d').tolist()}")
     return problems
+
