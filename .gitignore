@@ -5,5 +5,7 @@ __pycache__/
 !.env.example
 data/market/
 data/*.sqlite3*
+# 로컬에서 만든 DB 백업 폴더는 Git에 올리지 않는다.
+data/backups/
 data/*.lock
 STOP
