@@ -95,14 +95,31 @@ src/khuda_quant/
 uv sync                    # .venv 생성, 의존성 설치
 cp .env.example .env       # 키·계좌·Slack 주소 입력
 uv run pytest              # 테스트
-uv run python jobs/fetch_prices.py                            # 시세 수집
+uv run python jobs/fetch_prices.py 005930 --start 2026-11-19 --end 2026-11-20  # 시세 수집
 uv run python jobs/backtest.py --strategy momentum            # 전략 검증
 uv run --env-file .env python jobs/rebalance.py --env paper   # .env를 읽어 실행
 ```
 
+## 1주차 운영 기능 확인
+
+거래일 계산(`is_trading_day`, `next_trading_day`), 2026년 휴장일,
+SQLite 스키마 적용·트랜잭션·백업을 로컬에서 검증할 수 있다.
+거래일 함수는 `datetime.date`를 받으며 목록이 없는 연도는 `LookupError`로 멈춘다.
+테스트는 임시 DB를 사용하고 외부 API를 호출하지 않는다.
+
+```bash
+uv run pytest -q tests/test_market_day.py tests/test_store.py
+```
+
+현재 PC에 준비한 환경에서는 PowerShell로 다음 명령을 실행해도 된다.
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q
+```
+
+DB 사용법과 스키마 결정 사항은 `docs/progress.md`의 26.11.20. 기록을 참고한다.
+
 ## 아직 구현하지 않은 것
 
-모든 모듈이 각각 어떻게 구현할지 주석으로 간단한 설명만 추가한 빈 파일
-vendor 예제 활용하여 구현,
-휴장일·운용 설정 값, 
-테스트 내용까지 아직 없음.
+전략·주문 모듈, 운용 설정 값, KIS 인증·휴장일 대조,
+ExecCondition 시간대 판단·건너뜀 기록, 리밸런싱·알림·서버 배포는 후속 구현 대상이다.
