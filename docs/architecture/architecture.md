@@ -35,7 +35,7 @@ KIS Open API 연동은 `open-trading-api`를 기준으로 삼고, 목표 비중 
 | 실행 조건 | 거래일·시간대 판단, 휴장일 파일과 `chk_holiday` 대조, 건너뜀 사유 기록 | `ExecCondition`, 휴장일 파일, KIS `chk_holiday` | 개발팀 |
 | 주문 계획 | 목표 차이를 주문으로 변환 | pandas, 직접 구현 | 개발팀 |
 | 사전 점검 | 한도, 중복, 데이터, 긴급 정지, 거래정지·상하한가 확인 | 직접 구현 | 개발팀 |
-| Broker | 주문 인터페이스, 환경 전환 | `PaperBroker`, `KisBroker` | 개발팀 |
+| Broker | 주문 인터페이스, 환경 전환 | `KisBroker` (KIS 모의·실전) | 개발팀 |
 | 체결 확인 | 체결·미체결 확인, 정책에 따른 취소·재주문 | KIS Adapter, `settings.yaml` execution | 개발팀 |
 | SQLite | 주문, 체결, 잔고, 실행 기록 | SQLite | 개발팀 |
 | 사후 대조 | KIS 잔고(`inquire_balance`)와 내부 기록 비교, 해결 상태 기록 | pandas | 개발팀 |
