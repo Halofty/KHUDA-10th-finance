@@ -1,10 +1,10 @@
 # vendor — open-trading-api 예제 원본
 
 - 출처: https://github.com/koreainvestment/open-trading-api
-- 커밋: `SOURCE_COMMIT` 참고 (2026-11-16)
+- 커밋: `SOURCE_COMMIT`  (2026-11-16)
 - 복사 위치: `examples_llm/kis_auth.py`, `examples_llm/domestic_stock/<이름>/<이름>.py`
-- 원본과 같은 내용이다. 폴더 구조만 평평하게 바꿨다 (예제의 `import kis_auth as ka`가 그대로 동작한다).
-- 인자 예시는 원본 저장소의 `chk_<이름>.py`를 참고한다.
+- 참고를 위한 원본과 동일 내용 (예제의 `import kis_auth as ka`가 그대로 동작).
+- 인자 예시는 원본 저장소의 `chk_<이름>.py`를 참고
 
 | 파일 | 용도 |
 |---|---|
@@ -18,4 +18,4 @@
 
 ## 수정 기록
 
-수정하면 무엇을 왜 고쳤는지 여기에 남긴다. 현재 수정 없음.
+현재 수정 없음.
