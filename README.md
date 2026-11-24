@@ -44,7 +44,7 @@
 ```
 config/                 휴장일(krx_holidays.toml), 운용 설정·확정 전략(settings.yaml)
 deploy/systemd/         service, timer, 설치 스크립트
-docs/                   구현 계획(planning.md), 진행 기록(progress.md), architecture/(구조도·설계 문서)
+docs/                   구현 계획(planning.md), 진행 기록(progress.md), 전략 요구사항(strategy-requirements.md), architecture/(구조도·설계 문서)
 jobs/                   실행 진입점: fetch_prices·backtest(연구), rebalance·daily(운용)
 tests/                  pytest
 data/market/            Parquet 시세 raw/(원본)·std/(표준) (커밋 안 함)
